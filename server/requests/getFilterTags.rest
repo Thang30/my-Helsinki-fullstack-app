@@ -1,0 +1,1 @@
+GET http://localhost:4000/api/places?tagList=Vietnamese,Asian&tagFilterOrNot=true&allPlacesOrNot=false
