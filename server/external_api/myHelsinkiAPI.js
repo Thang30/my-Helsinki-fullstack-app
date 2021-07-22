@@ -1,9 +1,7 @@
-// const myHelsinkiapi = require("../util/myhelsinkiApi");
-// const fetch = require("node-fetch");
 require("dotenv").config();
 const axios = require("axios");
 const config = require("../utils/config");
-const logger = require("../utils/logger");
+// const logger = require("../utils/logger");
 
 const externalAPI = config.MY_HELSINKI_API_PLACES;
 
@@ -11,25 +9,29 @@ const getPlacesFromAPI = async (
   tagList,
   languageFilter,
   tagFilterOrNot = true,
-  allPlacesOrNot = true
+  allPlacesOrNot = true,
+  pageSize = 10,
+  startItemIndex
 ) => {
   try {
     if (allPlacesOrNot) {
-      const response = await axios.get(`${externalAPI}`);
-      logger.info(response.data);
+      const response = await axios.get(
+        `${externalAPI}?limit=${pageSize}&start=${startItemIndex}`
+      );
+      //   logger.info(response.data.meta);
       return response.data;
     } else {
       if (tagFilterOrNot) {
         const response = await axios.get(
-          `${externalAPI}?tags_filter=${tagList}&language_filter=${languageFilter}`
+          `${externalAPI}?tags_filter=${tagList}&language_filter=${languageFilter}&limit=${pageSize}&start=${startItemIndex}`
         );
-        logger.info(response.data);
+        // logger.info(response.data.meta);
         return response.data;
       } else {
         const response = await axios.get(
-          `${externalAPI}?tags_search=${tagList}&language_filter=${languageFilter}`
+          `${externalAPI}?tags_search=${tagList}&language_filter=${languageFilter}&limit=${pageSize}&start=${startItemIndex}`
         );
-        logger.info(response.data);
+        // logger.info(response.data.meta);
         return response.data;
       }
     }
@@ -79,4 +81,4 @@ const isOpen = (place) => {
 };
 
 module.exports = { getPlacesFromAPI, isOpen };
-// getPlacesFromAPI("Vietnamese,Asian", "fi");
+// getPlacesFromAPI("Vietnamese,Asian");

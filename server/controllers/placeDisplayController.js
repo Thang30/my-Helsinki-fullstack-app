@@ -5,7 +5,14 @@ const myHelsinkiAPI = require("../external_api/myHelsinkiAPI");
 
 router.get("/", async (req, res) => {
   // extract query strings and set their defaults if they are not found
-  let { tagList, languageFilter, tagFilterOrNot, allPlacesOrNot } = req.query;
+  let {
+    tagList,
+    languageFilter,
+    tagFilterOrNot,
+    allPlacesOrNot,
+    pageSize,
+    requestedPage,
+  } = req.query;
   if (!tagList) {
     tagList = [];
   }
@@ -27,17 +34,32 @@ router.get("/", async (req, res) => {
     allPlacesOrNot = JSON.parse(allPlacesOrNot);
   }
 
-  // const limit = parseInt(pageSize);
-  // const skip = (pageIndex - 1) * pageSize;
+  if (!pageSize) {
+    pageSize = 10;
+  }
+
+  if (!requestedPage) {
+    requestedPage = 1;
+  }
+
+  const startItemIndex = (requestedPage - 1) * pageSize;
 
   try {
-    const placesToDisplay = await myHelsinkiAPI.getPlacesFromAPI(
+    const filteredPlaces = await myHelsinkiAPI.getPlacesFromAPI(
       tagList,
       languageFilter,
       tagFilterOrNot,
-      allPlacesOrNot
+      allPlacesOrNot,
+      pageSize,
+      startItemIndex
     );
-    res.json(placesToDisplay);
+    const numOfPlaces = filteredPlaces.meta.count;
+    const numOfPages = Math.ceil(numOfPlaces / pageSize);
+    // res.json(filteredPlaces.data);
+    res.send({
+      meta: { pageSize, numOfPlaces, numOfPages, requestedPage },
+      data: filteredPlaces.data,
+    });
   } catch (error) {
     res.status(500).send(`Error! ${error}`);
   }

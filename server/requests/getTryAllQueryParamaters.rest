@@ -1,0 +1,3 @@
+GET http://localhost:4000/api/places?tagList=Vietnamese,Asian&languageFilter=fi&tagFilterorNot=true&allPlacesOrNot=false&pageSize=3&requestedPage=2
+
+
