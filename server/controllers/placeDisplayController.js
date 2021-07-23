@@ -9,12 +9,13 @@ router.get("/", async (req, res) => {
     tagList,
     languageFilter,
     tagFilterOrNot,
-    allPlacesOrNot,
+    // allPlacesOrNot,
     pageSize,
     requestedPage,
   } = req.query;
+
   if (!tagList) {
-    tagList = [];
+    tagList = "all";
   }
 
   if (!languageFilter) {
@@ -23,16 +24,16 @@ router.get("/", async (req, res) => {
 
   // parse the strings to boolean values
   if (!tagFilterOrNot) {
-    tagFilterOrNot = true;
+    tagFilterOrNot = false;
   } else {
     tagFilterOrNot = JSON.parse(tagFilterOrNot);
   }
 
-  if (!allPlacesOrNot) {
-    allPlacesOrNot = true;
-  } else {
-    allPlacesOrNot = JSON.parse(allPlacesOrNot);
-  }
+  // if (!allPlacesOrNot) {
+  //   allPlacesOrNot = true;
+  // } else {
+  //   allPlacesOrNot = JSON.parse(allPlacesOrNot);
+  // }
 
   if (!pageSize) {
     pageSize = 10;
@@ -49,10 +50,13 @@ router.get("/", async (req, res) => {
       tagList,
       languageFilter,
       tagFilterOrNot,
-      allPlacesOrNot,
+      // allPlacesOrNot,
       pageSize,
       startItemIndex
     );
+    filteredPlaces.data.forEach((place) => {
+      myHelsinkiAPI.isOpen(place);
+    });
     const numOfPlaces = filteredPlaces.meta.count;
     const numOfPages = Math.ceil(numOfPlaces / pageSize);
     // res.json(filteredPlaces.data);

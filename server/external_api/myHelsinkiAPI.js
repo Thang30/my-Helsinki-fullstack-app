@@ -6,15 +6,15 @@ const config = require("../utils/config");
 const externalAPI = config.MY_HELSINKI_API_PLACES;
 
 const getPlacesFromAPI = async (
-  tagList,
+  tagList = "all",
   languageFilter,
-  tagFilterOrNot = true,
-  allPlacesOrNot = true,
+  tagFilterOrNot,
+  // allPlacesOrNot = true,
   pageSize = 10,
   startItemIndex
 ) => {
   try {
-    if (allPlacesOrNot) {
+    if (tagList == "all") {
       const response = await axios.get(
         `${externalAPI}?limit=${pageSize}&start=${startItemIndex}`
       );
@@ -72,11 +72,10 @@ const isOpen = (place) => {
     isOpen = "Yes";
   }
 
-  place.opening_hours = isOpen;
+  place.open_now = isOpen;
 
   return {
     ...place,
-    opening_hours: isOpen,
   };
 };
 

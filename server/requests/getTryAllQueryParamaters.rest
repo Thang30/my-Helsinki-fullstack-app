@@ -1,3 +1,6 @@
-GET http://localhost:4000/api/places?tagList=Vietnamese,Asian&languageFilter=fi&tagFilterorNot=true&allPlacesOrNot=false&pageSize=3&requestedPage=2
+GET http://localhost:4000/api/places?tagList=Vietnamese,Asian&languageFilter=en&tagFilterOrNot=false&allPlacesOrNot=false&pageSize=3&requestedPage=2
 
 
+GET http://localhost:4000/api/places?pageSize=3&tagList=Vietnamese,Asian&requestedPage=4&languageFilter=en&tagFilterOrNot=true
+
+GET http://localhost:4000/api/places?pageSize=7&requestedPage=1&tagList=Vietnamese&allPlacesOrNot=false
