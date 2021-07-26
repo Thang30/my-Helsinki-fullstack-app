@@ -13,18 +13,32 @@ import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 
+import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TablePagination from "@material-ui/core/TablePagination";
+import TableRow from "@material-ui/core/TableRow";
+import Pagination from "@material-ui/lab/Pagination";
+
 const App = () => {
   const [places, setPlaces] = useState([]);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [pageSizeQuery, setPageSizeQuery] = useState();
   const [requestedPageQuery, setRequestedPageQuery] = useState();
-  const [languageFilterQuery, setLanguageFilterQuery] = useState();
   const [tagListQuery, setTagListQuery] = useState();
   const [tagFilterOrNotQuery, setTagFilterOrNotQuery] = useState();
   const [queryParameters, setQueryParameters] = useState(
     getDataFromServerServices.initialQueryParameters
   );
 
+  const [pageSize, setPageSize] = useState(10);
+  const [numOfPlaces, setNumOfPlaces] = useState();
+  const [numOfPages, setNumOfPages] = useState();
+  const [requestedPage, setRequestedPage] = useState();
   // useEffect(() => {
   //   const initializeAllPlaces = async () => {
   //     const allPlaces = await getDataFromServerServices.getAllPlaces();
@@ -42,8 +56,14 @@ const App = () => {
         queryParameters
       );
 
-      console.log("Places count:", fetchResult.meta.numOfPlaces);
+      console.log("The meta data:", fetchResult.meta);
       setPlaces(fetchResult.data);
+      setPageSize(fetchResult.meta.pageSize);
+      setNumOfPlaces(fetchResult.meta.numOfPlaces);
+      setNumOfPages(fetchResult.meta.numOfPages);
+      setRequestedPage(fetchResult.meta.requestedPage);
+      // const metaData = fetchResult.meta;
+      // return metaData;
     };
 
     fetchDataAgain();
@@ -51,108 +71,191 @@ const App = () => {
 
   // return <div>{<Places />}</div>;
   // return null;
+
+  // const columns = [
+  //   { id: "name", label: "Name", minWidth: 170 },
+  //   { id: "address", label: "Address", minWidth: 200 },
+  //   { id: "open now", label: "Open Now", minWidth: 100 },
+  // ];
+
+  // export default function StickyHeadTable() {
+  //   const [page, setPage] = React.useState(0);
+  //   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
+  //   const handleChangePage = (event, newPage) => {
+  //     setPage(newPage);
+  //   };
+
+  //   const handleChangeRowsPerPage = (event) => {
+  //     setRowsPerPage(+event.target.value);
+  //     setPage(0);
+  //   };
+
+  const useStyles = makeStyles({
+    table: {
+      minWidth: 700,
+    },
+  });
+
+  const classes = useStyles();
+
+  // const displayMetaData = () => (
+  //   <Fragment>Places found: {numOfPlaces}</Fragment>
+  // );
+
+  // const handlePageChange = (event, value) => {
+  //   setRequestedPageQuery(event.target.value);
+  //   setQueryParameters({
+  //     ...queryParameters,
+  //     requestedPage: requestedPageQuery,
+  //   });
+  //   // setNumOfPages()
+  // };
+
   return (
     <Fragment>
-      <ul>
+      {/* <ul>
         {places.map((place) => (
           <li>
             <Place key={place.id} place={place} />
           </li>
         ))}
-      </ul>
+      </ul> */}
+      <p style={{ textAlign: "center" }}>
+        Refresh this page (pressing F5) to get all places again.
+      </p>
+      <p style={{ textAlign: "center" }}>
+        <input
+          type="text"
+          value={tagListQuery}
+          onChange={(event) => setTagListQuery(event.target.value)}
+        />
+        <button
+          type="button"
+          onClick={() =>
+            setQueryParameters({
+              ...queryParameters,
+              tagList: tagListQuery,
+            })
+          }
+        >
+          Submit tags seperated by commas
+        </button>
+        <InputLabel>
+          Any means places with at least 1 submitted tag. All means places with
+          ALL of the submitted tags
+        </InputLabel>
+        <Select
+          // labelId="demo-simple-select-label"
+          // id="demo-simple-select"
+          value={tagFilterOrNotQuery}
+          onChange={(event) => {
+            setTagFilterOrNotQuery(event.target.value);
+          }}
+        >
+          <MenuItem value={"false"}>Any</MenuItem>
+          <MenuItem value={"true"}>All</MenuItem>
+        </Select>
+        <button
+          type="button"
+          onClick={() =>
+            setQueryParameters({
+              ...queryParameters,
+              tagFilterOrNot: tagFilterOrNotQuery,
+            })
+          }
+        >
+          Any or All
+        </button>
+      </p>
 
-      <input
-        type="text"
-        value={pageSizeQuery}
-        onChange={(event) => setPageSizeQuery(event.target.value)}
-      />
+      <p style={{ textAlign: "center" }}>
+        <input
+          type="text"
+          value={pageSizeQuery}
+          onChange={(event) => setPageSizeQuery(event.target.value)}
+        />
 
-      <button
-        type="button"
-        onClick={() =>
-          setQueryParameters({ ...queryParameters, pageSize: pageSizeQuery })
-        }
-      >
-        Submit page size
-      </button>
+        <button
+          type="button"
+          onClick={() =>
+            setQueryParameters({ ...queryParameters, pageSize: pageSizeQuery })
+          }
+        >
+          Submit page size
+        </button>
+        <span>&nbsp;</span>
+        <span>&nbsp;</span>
+        <span>&nbsp;</span>
+        <span>&nbsp;</span>
+        <span>&nbsp;</span>
 
-      <input
-        type="text"
-        value={requestedPageQuery}
-        onChange={(event) => setRequestedPageQuery(event.target.value)}
-      />
+        <button
+          type="button"
+          onClick={() =>
+            setQueryParameters({
+              ...queryParameters,
+              requestedPage: requestedPageQuery,
+            })
+          }
+        >
+          Go to page
+        </button>
+        <input
+          type="text"
+          value={requestedPageQuery}
+          onChange={(event) => setRequestedPageQuery(event.target.value)}
+        />
+      </p>
 
-      <button
-        type="button"
-        onClick={() =>
-          setQueryParameters({
-            ...queryParameters,
-            requestedPage: requestedPageQuery,
-          })
-        }
-      >
-        Submit current page
-      </button>
+      <p style={{ textAlign: "center" }}>
+        Places found: {numOfPlaces}. Displaying {pageSize} places per page.
+        Total number of pages is: {numOfPages}. Currently on page:{" "}
+        {requestedPage}.{" "}
+      </p>
 
-      <input
-        type="text"
-        value={languageFilterQuery}
-        onChange={(event) => setLanguageFilterQuery(event.target.value)}
-      />
-
-      <button
-        type="button"
-        onClick={() =>
-          setQueryParameters({
-            ...queryParameters,
-            languageFilter: languageFilterQuery,
-          })
-        }
-      >
-        Submit language
-      </button>
-
-      <input
-        type="text"
-        value={tagListQuery}
-        onChange={(event) => setTagListQuery(event.target.value)}
-      />
-
-      <button
-        type="button"
-        onClick={() =>
-          setQueryParameters({
-            ...queryParameters,
-            tagList: tagListQuery,
-          })
-        }
-      >
-        Submit tags
-      </button>
-      <InputLabel>Any or all tags</InputLabel>
-      <Select
-        // labelId="demo-simple-select-label"
-        // id="demo-simple-select"
-        value={tagFilterOrNotQuery}
-        onChange={(event) => {
-          setTagFilterOrNotQuery(event.target.value);
-        }}
-      >
-        <MenuItem value={"false"}>Any</MenuItem>
-        <MenuItem value={"true"}>All</MenuItem>
-      </Select>
-
-      <button
-        type="button"
-        onClick={() =>
-          setQueryParameters({
-            ...queryParameters,
-            tagFilterOrNot: tagFilterOrNotQuery,
-          })
-        }
-      >
-        Any or All
-      </button>
+      <TableContainer component={Paper}>
+        <Table className={classes.table} aria-label="my-table">
+          <TableHead>
+            <TableRow>
+              <TableCell align="center" colSpan={3}>
+                Name
+              </TableCell>
+              <TableCell align="center" colSpan={3}>
+                Address
+              </TableCell>
+              <TableCell align="center" rowSpan={2}>
+                Open Now
+              </TableCell>
+            </TableRow>
+            <TableCell align="center">English</TableCell>
+            <TableCell align="center">Finnish</TableCell>
+            <TableCell align="center">Swedish</TableCell>
+            <TableCell align="center">Street Address</TableCell>
+            <TableCell align="center">Postal Code</TableCell>
+            <TableCell align="center">Locality</TableCell>
+          </TableHead>
+          <TableBody>
+            {places.map((place) => (
+              <TableRow key={place.id}>
+                <TableCell alight="right">{place.name.en}</TableCell>
+                <TableCell alight="right">{place.name.fi}</TableCell>
+                <TableCell alight="right">{place.name.sv}</TableCell>
+                <TableCell alight="right">
+                  {place.location.address.street_address}
+                </TableCell>
+                <TableCell alight="right">
+                  {place.location.address.postal_code}
+                </TableCell>
+                <TableCell alight="right">
+                  {place.location.address.locality}
+                </TableCell>
+                <TableCell alight="center">{place.open_now}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </Fragment>
   );
 };

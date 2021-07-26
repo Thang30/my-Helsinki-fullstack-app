@@ -1,15 +1,11 @@
-const express = require("express");
-const app = express();
+const app = require("./app");
+const http = require("http");
 const config = require("./utils/config");
 const logger = require("./utils/logger");
 const placeDisplayController = require("./controllers/placeDisplayController");
 
-// const port = commonObjects.PORT;
+server = http.createServer(app);
 
-app.listen(config.PORT, () => {
+server.listen(config.PORT, () => {
   logger.info(`Server is listening on port ${config.PORT}`);
 });
-
-app.use("/api/places", placeDisplayController);
-
-module.exports = app;

@@ -54,6 +54,7 @@ router.get("/", async (req, res) => {
       pageSize,
       startItemIndex
     );
+    console.log(filteredPlaces);
     filteredPlaces.data.forEach((place) => {
       myHelsinkiAPI.isOpen(place);
     });
