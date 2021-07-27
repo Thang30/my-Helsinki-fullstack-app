@@ -12,6 +12,9 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
+import { Map, Marker, Overlay } from "pigeon-maps";
+import { render } from "ejs";
+// import randomLogo from "../public/logo192.png";
 
 const App = () => {
   const [places, setPlaces] = useState([]);
@@ -65,6 +68,26 @@ const App = () => {
       });
     }
   };
+
+  const [hue, setHue] = useState(0);
+  const color = `hsl(${hue % 360}deg 39% 70%)`;
+
+  // const [displayOverlay, setDisplayOverlay] = useState(false);
+  // const showWhenVisible = { display: displayOverlay ? "" : "none" };
+  // const handleMarkerClicking = (place) => {
+  //   setDisplayOverlay(!displayOverlay);
+  //   return (
+  //     <div style={showWhenVisible}>
+  //       <Overlay
+  //         anchor={[place.location.lat, place.location.lon]}
+  //         offset={[100, 100]}
+  //       >
+  //         <img src="./img/logo192.png" width={240} height={158} alt="" />
+  //       </Overlay>
+  //       )}
+  //     </div>
+  //   );
+  // };
 
   return (
     <Fragment>
@@ -169,8 +192,30 @@ const App = () => {
       <p style={{ textAlign: "center" }}>
         Places found: {numOfPlaces}. Displaying {pageSize} places per page.
         Total number of pages is: {numOfPages}. Currently on page:{" "}
-        {requestedPage}.{" "}
+        {requestedPage}.
       </p>
+
+      <p style={{ textAlign: "center" }}>Our Map</p>
+
+      <Map
+        height={300}
+        defaultCenter={[60.17114299375396, 24.956196766060668]}
+        defaultZoom={11}
+      >
+        {places.map((place) => (
+          <Overlay anchor={[place.location.lat, place.location.lon]}>
+            <Marker
+              width={30}
+              anchor={[place.location.lat, place.location.lon]}
+              color={color}
+              offset={[0, 1000]}
+            />
+            <p>{place.name.en}</p>
+          </Overlay>
+        ))}
+      </Map>
+
+      <p style={{ textAlign: "center" }}>The Places in Tabular Format</p>
 
       <TableContainer component={Paper}>
         <Table
