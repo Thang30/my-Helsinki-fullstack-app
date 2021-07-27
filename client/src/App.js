@@ -1,18 +1,9 @@
 import "./App.css";
 import React, { useEffect, useState, Fragment } from "react";
-import { useDispatch } from "react-redux";
-import Places from "./components/Places";
-import Place from "./components/SinglePlace";
-import {
-  initializePlaces,
-  getQueryFilteredPlaces,
-} from "./reducers/placeReducer";
 import getDataFromServerServices from "./services/getDataFromServer";
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
-import FormControl from "@material-ui/core/FormControl";
-
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
@@ -20,9 +11,7 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
-import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
-import Pagination from "@material-ui/lab/Pagination";
 
 const App = () => {
   const [places, setPlaces] = useState([]);
@@ -64,6 +53,18 @@ const App = () => {
   });
 
   const classes = useStyles();
+
+  const handlePageSize = (pageSizeQuery) => {
+    if (pageSizeQuery > 50) {
+      // console.log("page size should not exceed 50");
+      alert("The page size should not exceed 50, please try again!");
+    } else {
+      setQueryParameters({
+        ...queryParameters,
+        pageSize: pageSizeQuery,
+      });
+    }
+  };
 
   return (
     <Fragment>
@@ -119,6 +120,8 @@ const App = () => {
         </button>
       </p>
 
+      <p style={{ textAlign: "center" }}>The maximum page size is 50</p>
+
       <p style={{ textAlign: "center" }}>
         <input
           className="inputPageSize"
@@ -131,9 +134,9 @@ const App = () => {
         <button
           type="button"
           id="button-page-size"
-          onClick={() =>
-            setQueryParameters({ ...queryParameters, pageSize: pageSizeQuery })
-          }
+          onClick={() => {
+            handlePageSize(pageSizeQuery);
+          }}
         >
           Submit page size
         </button>
