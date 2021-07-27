@@ -19,7 +19,6 @@ const getPlacesFromAPI = async (
         `${externalAPI}?limit=${pageSize}&start=${startItemIndex}`
       );
       //   logger.info(response.data.meta);
-      console.log(response.data);
       return response.data;
     } else {
       if (tagFilterOrNot) {
@@ -27,14 +26,12 @@ const getPlacesFromAPI = async (
           `${externalAPI}?tags_filter=${tagList}&language_filter=${languageFilter}&limit=${pageSize}&start=${startItemIndex}`
         );
         // logger.info(response.data.meta);
-        console.log(response.data);
         return response.data;
       } else {
         const response = await axios.get(
           `${externalAPI}?tags_search=${tagList}&language_filter=${languageFilter}&limit=${pageSize}&start=${startItemIndex}`
         );
         // logger.info(response.data.meta);
-        console.log(response.data);
         return response.data;
       }
     }

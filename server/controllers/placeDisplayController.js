@@ -5,14 +5,8 @@ const myHelsinkiAPI = require("../external_api/myHelsinkiAPI");
 
 router.get("/", async (req, res) => {
   // extract query strings and set their defaults if they are not found
-  let {
-    tagList,
-    languageFilter,
-    tagFilterOrNot,
-    // allPlacesOrNot,
-    pageSize,
-    requestedPage,
-  } = req.query;
+  let { tagList, languageFilter, tagFilterOrNot, pageSize, requestedPage } =
+    req.query;
 
   if (!tagList) {
     tagList = "all";
@@ -28,12 +22,6 @@ router.get("/", async (req, res) => {
   } else {
     tagFilterOrNot = JSON.parse(tagFilterOrNot);
   }
-
-  // if (!allPlacesOrNot) {
-  //   allPlacesOrNot = true;
-  // } else {
-  //   allPlacesOrNot = JSON.parse(allPlacesOrNot);
-  // }
 
   if (!pageSize) {
     pageSize = 10;
@@ -54,7 +42,7 @@ router.get("/", async (req, res) => {
       pageSize,
       startItemIndex
     );
-    console.log(filteredPlaces);
+    // console.log(filteredPlaces);
     filteredPlaces.data.forEach((place) => {
       myHelsinkiAPI.isOpen(place);
     });

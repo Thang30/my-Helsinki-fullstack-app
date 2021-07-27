@@ -4,14 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "NODE_ENV=production node index.js",
+    "dev": "NODE_ENV=development nodemon index.js",
+    "test": "NODE_ENV=test jest --verbose --runInBand"
   },
   "author": "Thang Ngo",
   "license": "ISC",
   "devDependencies": {
     "cross-env": "^7.0.3",
     "jest": "^27.0.6",
+    "nock": "^13.1.1",
     "nodemon": "^2.0.12",
     "supertest": "^6.1.4"
   },

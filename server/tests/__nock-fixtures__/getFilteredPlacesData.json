@@ -1,0 +1,675 @@
+[
+    {
+        "scope": "http://open-api.myhelsinki.fi:80",
+        "method": "GET",
+        "path": "/v1/places/?tags_filter=Vietnamese,Asian&language_filter=en&limit=3&start=3",
+        "body": "",
+        "status": 200,
+        "response": {
+            "meta": {
+                "count": "16",
+                "next": "http://open-api.myhelsinki.fi/v1/places/?tags_filter=Vietnamese,Asian&language_filter=en&limit=3&start=6",
+                "previous": "http://open-api.myhelsinki.fi/v1/places/?tags_filter=Vietnamese,Asian&language_filter=en&limit=3&start=0"
+            },
+            "data": [
+                {
+                    "id": "3480",
+                    "name": {
+                        "fi": "Lie Mi Kallio",
+                        "en": "Lie Mi Kallio",
+                        "sv": "Lie Mi Kallio",
+                        "zh": null
+                    },
+                    "source_type": {
+                        "id": 2,
+                        "name": "Matko"
+                    },
+                    "info_url": "http://www.liemi.fi/",
+                    "modified_at": "2021-06-10T13:24:47.000Z",
+                    "location": {
+                        "lat": 60.185855865478516,
+                        "lon": 24.961549758911133,
+                        "address": {
+                            "street_address": "Hämeentie 19",
+                            "postal_code": "00500",
+                            "locality": "Helsinki"
+                        }
+                    },
+                    "description": {
+                        "intro": null,
+                        "body": "Popular Vietnamese restaurant. There are Lie Mi -restaurants also at Runeberginkatu, at Kamppi shopping centre and Bulevardi.",
+                        "images": []
+                    },
+                    "tags": [
+                        {
+                            "id": "matko1:10",
+                            "name": "RESTAURANTS & CAFES"
+                        },
+                        {
+                            "id": "matko2:80",
+                            "name": "Asian"
+                        },
+                        {
+                            "id": "matko2:197",
+                            "name": "Vietnamese"
+                        },
+                        {
+                            "id": "matko2:229",
+                            "name": "Restaurant"
+                        }
+                    ],
+                    "opening_hours": {
+                        "hours": [
+                            {
+                                "weekday_id": 1,
+                                "opens": "11:00:00",
+                                "closes": "22:00:00",
+                                "open24h": false
+                            },
+                            {
+                                "weekday_id": 2,
+                                "opens": "11:00:00",
+                                "closes": "22:00:00",
+                                "open24h": false
+                            },
+                            {
+                                "weekday_id": 3,
+                                "opens": "11:00:00",
+                                "closes": "22:00:00",
+                                "open24h": false
+                            },
+                            {
+                                "weekday_id": 4,
+                                "opens": "11:00:00",
+                                "closes": "22:00:00",
+                                "open24h": false
+                            },
+                            {
+                                "weekday_id": 5,
+                                "opens": "11:00:00",
+                                "closes": "23:00:00",
+                                "open24h": false
+                            },
+                            {
+                                "weekday_id": 6,
+                                "opens": "12:00:00",
+                                "closes": "23:00:00",
+                                "open24h": false
+                            },
+                            {
+                                "weekday_id": 7,
+                                "opens": "13:00:00",
+                                "closes": "22:00:00",
+                                "open24h": false
+                            }
+                        ],
+                        "openinghours_exception": ""
+                    }
+                },
+                {
+                    "id": "3996",
+                    "name": {
+                        "fi": "Lie Mi Kamppi",
+                        "en": "Lie Mi Kamppi",
+                        "sv": null,
+                        "zh": null
+                    },
+                    "source_type": {
+                        "id": 2,
+                        "name": "Matko"
+                    },
+                    "info_url": "https://www.liemi.fi/",
+                    "modified_at": "2021-06-10T13:28:00.000Z",
+                    "location": {
+                        "lat": 60.16887664794922,
+                        "lon": 24.93357276916504,
+                        "address": {
+                            "street_address": "Urho Kekkosen katu 1, 5krs.",
+                            "postal_code": "00100",
+                            "locality": "Helsinki"
+                        }
+                    },
+                    "description": {
+                        "intro": null,
+                        "body": "The popular Vietnamese restaurant is now also at Kamppi shopping centre Kortteli food court. There are also Lie Mi restaurants at Hämeentie, Bulevardi \r\nand Runberginkatu.",
+                        "images": []
+                    },
+                    "tags": [
+                        {
+                            "id": "matko1:10",
+                            "name": "RESTAURANTS & CAFES"
+                        },
+                        {
+                            "id": "matko2:80",
+                            "name": "Asian"
+                        },
+                        {
+                            "id": "matko2:197",
+                            "name": "Vietnamese"
+                        },
+                        {
+                            "id": "matko2:229",
+                            "name": "Restaurant"
+                        }
+                    ],
+                    "opening_hours": {
+                        "hours": [
+                            {
+                                "weekday_id": 1,
+                                "opens": "11:00:00",
+                                "closes": "15:00:00",
+                                "open24h": false
+                            },
+                            {
+                                "weekday_id": 2,
+                                "opens": "11:00:00",
+                                "closes": "15:00:00",
+                                "open24h": false
+                            },
+                            {
+                                "weekday_id": 3,
+                                "opens": "11:00:00",
+                                "closes": "15:00:00",
+                                "open24h": false
+                            },
+                            {
+                                "weekday_id": 4,
+                                "opens": "11:00:00",
+                                "closes": "15:00:00",
+                                "open24h": false
+                            },
+                            {
+                                "weekday_id": 5,
+                                "opens": "11:00:00",
+                                "closes": "18:00:00",
+                                "open24h": false
+                            },
+                            {
+                                "weekday_id": 6,
+                                "opens": "12:00:00",
+                                "closes": "18:00:00",
+                                "open24h": false
+                            },
+                            {
+                                "weekday_id": 7,
+                                "opens": null,
+                                "closes": null,
+                                "open24h": false
+                            }
+                        ],
+                        "openinghours_exception": ""
+                    }
+                },
+                {
+                    "id": "2907",
+                    "name": {
+                        "fi": "Lie Mi Töölö",
+                        "en": "Lie Mi Töölö",
+                        "sv": "Lie Mi Tölö",
+                        "zh": null
+                    },
+                    "source_type": {
+                        "id": 2,
+                        "name": "Matko"
+                    },
+                    "info_url": "https://www.liemi.fi",
+                    "modified_at": "2021-06-10T13:30:30.000Z",
+                    "location": {
+                        "lat": 60.18109130859375,
+                        "lon": 24.925268173217773,
+                        "address": {
+                            "street_address": "Runeberginkatu 56",
+                            "postal_code": "00260",
+                            "locality": "Helsinki"
+                        }
+                    },
+                    "description": {
+                        "intro": null,
+                        "body": "Popular Vietnamese restaurant. There are Lie Mi -restaurants also at Hämeentie, at Kamppi shopping centre and Bulevardi.",
+                        "images": [
+                            {
+                                "url": "https://edit.myhelsinki.fi/sites/default/files/styles/api_1980x1020/public/2017-11/19554137_240979733085399_6444262077231740858_n.jpg?h=4f0c55e5&itok=mAWxrsfv",
+                                "copyright_holder": "Lie Mi Töölö",
+                                "license_type": {
+                                    "id": 1,
+                                    "name": "All rights reserved."
+                                }
+                            }
+                        ]
+                    },
+                    "tags": [
+                        {
+                            "id": "matko1:10",
+                            "name": "RESTAURANTS & CAFES"
+                        },
+                        {
+                            "id": "matko2:197",
+                            "name": "Vietnamese"
+                        },
+                        {
+                            "id": "matko2:229",
+                            "name": "Restaurant"
+                        },
+                        {
+                            "id": "matko2:80",
+                            "name": "Asian"
+                        },
+                        {
+                            "id": "matko2:168",
+                            "name": "Brunch"
+                        }
+                    ],
+                    "opening_hours": {
+                        "hours": [
+                            {
+                                "weekday_id": 1,
+                                "opens": "11:00:00",
+                                "closes": "22:00:00",
+                                "open24h": false
+                            },
+                            {
+                                "weekday_id": 2,
+                                "opens": "11:00:00",
+                                "closes": "22:00:00",
+                                "open24h": false
+                            },
+                            {
+                                "weekday_id": 3,
+                                "opens": "11:00:00",
+                                "closes": "22:00:00",
+                                "open24h": false
+                            },
+                            {
+                                "weekday_id": 4,
+                                "opens": "11:00:00",
+                                "closes": "22:00:00",
+                                "open24h": false
+                            },
+                            {
+                                "weekday_id": 5,
+                                "opens": "11:00:00",
+                                "closes": "23:00:00",
+                                "open24h": false
+                            },
+                            {
+                                "weekday_id": 6,
+                                "opens": "12:00:00",
+                                "closes": "23:00:00",
+                                "open24h": false
+                            },
+                            {
+                                "weekday_id": 7,
+                                "opens": "12:00:00",
+                                "closes": "22:00:00",
+                                "open24h": false
+                            }
+                        ],
+                        "openinghours_exception": ""
+                    }
+                }
+            ],
+            "tags": {
+                "matko1:10": "RESTAURANTS & CAFES",
+                "matko2:168": "Brunch",
+                "matko2:197": "Vietnamese",
+                "matko2:229": "Restaurant",
+                "matko2:80": "Asian"
+            }
+        },
+        "rawHeaders": [
+            "Server",
+            "Cowboy",
+            "Connection",
+            "close",
+            "Referrer-Policy",
+            "origin-when-cross-origin, strict-origin-when-cross-origin",
+            "X-Frame-Options",
+            "DENY",
+            "X-Xss-Protection",
+            "1; mode=block",
+            "X-Content-Type-Options",
+            "nosniff",
+            "X-Permitted-Cross-Domain-Policies",
+            "master-only",
+            "Date",
+            "Mon, 26 Jul 2021 19:20:16 GMT",
+            "Content-Type",
+            "application/json",
+            "Content-Length",
+            "4542",
+            "Via",
+            "1.1 vegur"
+        ],
+        "responseIsBinary": false
+    },
+    {
+        "scope": "http://127.0.0.1:60078",
+        "method": "GET",
+        "path": "/api/places/?tagList=Vietnamese,Asian&tagFilterOrNot=true&pageSize=3&requestedPage=2",
+        "body": "",
+        "status": 200,
+        "response": {
+            "meta": {
+                "pageSize": "3",
+                "numOfPlaces": "16",
+                "numOfPages": 6,
+                "requestedPage": "2"
+            },
+            "data": [
+                {
+                    "id": "3480",
+                    "name": {
+                        "fi": "Lie Mi Kallio",
+                        "en": "Lie Mi Kallio",
+                        "sv": "Lie Mi Kallio",
+                        "zh": null
+                    },
+                    "source_type": {
+                        "id": 2,
+                        "name": "Matko"
+                    },
+                    "info_url": "http://www.liemi.fi/",
+                    "modified_at": "2021-06-10T13:24:47.000Z",
+                    "location": {
+                        "lat": 60.185855865478516,
+                        "lon": 24.961549758911133,
+                        "address": {
+                            "street_address": "Hämeentie 19",
+                            "postal_code": "00500",
+                            "locality": "Helsinki"
+                        }
+                    },
+                    "description": {
+                        "intro": null,
+                        "body": "Popular Vietnamese restaurant. There are Lie Mi -restaurants also at Runeberginkatu, at Kamppi shopping centre and Bulevardi.",
+                        "images": []
+                    },
+                    "tags": [
+                        {
+                            "id": "matko1:10",
+                            "name": "RESTAURANTS & CAFES"
+                        },
+                        {
+                            "id": "matko2:80",
+                            "name": "Asian"
+                        },
+                        {
+                            "id": "matko2:197",
+                            "name": "Vietnamese"
+                        },
+                        {
+                            "id": "matko2:229",
+                            "name": "Restaurant"
+                        }
+                    ],
+                    "opening_hours": {
+                        "hours": [
+                            {
+                                "weekday_id": 1,
+                                "opens": "11:00:00",
+                                "closes": "22:00:00",
+                                "open24h": false
+                            },
+                            {
+                                "weekday_id": 2,
+                                "opens": "11:00:00",
+                                "closes": "22:00:00",
+                                "open24h": false
+                            },
+                            {
+                                "weekday_id": 3,
+                                "opens": "11:00:00",
+                                "closes": "22:00:00",
+                                "open24h": false
+                            },
+                            {
+                                "weekday_id": 4,
+                                "opens": "11:00:00",
+                                "closes": "22:00:00",
+                                "open24h": false
+                            },
+                            {
+                                "weekday_id": 5,
+                                "opens": "11:00:00",
+                                "closes": "23:00:00",
+                                "open24h": false
+                            },
+                            {
+                                "weekday_id": 6,
+                                "opens": "12:00:00",
+                                "closes": "23:00:00",
+                                "open24h": false
+                            },
+                            {
+                                "weekday_id": 7,
+                                "opens": "13:00:00",
+                                "closes": "22:00:00",
+                                "open24h": false
+                            }
+                        ],
+                        "openinghours_exception": ""
+                    },
+                    "open_now": "Yes"
+                },
+                {
+                    "id": "3996",
+                    "name": {
+                        "fi": "Lie Mi Kamppi",
+                        "en": "Lie Mi Kamppi",
+                        "sv": null,
+                        "zh": null
+                    },
+                    "source_type": {
+                        "id": 2,
+                        "name": "Matko"
+                    },
+                    "info_url": "https://www.liemi.fi/",
+                    "modified_at": "2021-06-10T13:28:00.000Z",
+                    "location": {
+                        "lat": 60.16887664794922,
+                        "lon": 24.93357276916504,
+                        "address": {
+                            "street_address": "Urho Kekkosen katu 1, 5krs.",
+                            "postal_code": "00100",
+                            "locality": "Helsinki"
+                        }
+                    },
+                    "description": {
+                        "intro": null,
+                        "body": "The popular Vietnamese restaurant is now also at Kamppi shopping centre Kortteli food court. There are also Lie Mi restaurants at Hämeentie, Bulevardi \r\nand Runberginkatu.",
+                        "images": []
+                    },
+                    "tags": [
+                        {
+                            "id": "matko1:10",
+                            "name": "RESTAURANTS & CAFES"
+                        },
+                        {
+                            "id": "matko2:80",
+                            "name": "Asian"
+                        },
+                        {
+                            "id": "matko2:197",
+                            "name": "Vietnamese"
+                        },
+                        {
+                            "id": "matko2:229",
+                            "name": "Restaurant"
+                        }
+                    ],
+                    "opening_hours": {
+                        "hours": [
+                            {
+                                "weekday_id": 1,
+                                "opens": "11:00:00",
+                                "closes": "15:00:00",
+                                "open24h": false
+                            },
+                            {
+                                "weekday_id": 2,
+                                "opens": "11:00:00",
+                                "closes": "15:00:00",
+                                "open24h": false
+                            },
+                            {
+                                "weekday_id": 3,
+                                "opens": "11:00:00",
+                                "closes": "15:00:00",
+                                "open24h": false
+                            },
+                            {
+                                "weekday_id": 4,
+                                "opens": "11:00:00",
+                                "closes": "15:00:00",
+                                "open24h": false
+                            },
+                            {
+                                "weekday_id": 5,
+                                "opens": "11:00:00",
+                                "closes": "18:00:00",
+                                "open24h": false
+                            },
+                            {
+                                "weekday_id": 6,
+                                "opens": "12:00:00",
+                                "closes": "18:00:00",
+                                "open24h": false
+                            },
+                            {
+                                "weekday_id": 7,
+                                "opens": null,
+                                "closes": null,
+                                "open24h": false
+                            }
+                        ],
+                        "openinghours_exception": ""
+                    },
+                    "open_now": "No"
+                },
+                {
+                    "id": "2907",
+                    "name": {
+                        "fi": "Lie Mi Töölö",
+                        "en": "Lie Mi Töölö",
+                        "sv": "Lie Mi Tölö",
+                        "zh": null
+                    },
+                    "source_type": {
+                        "id": 2,
+                        "name": "Matko"
+                    },
+                    "info_url": "https://www.liemi.fi",
+                    "modified_at": "2021-06-10T13:30:30.000Z",
+                    "location": {
+                        "lat": 60.18109130859375,
+                        "lon": 24.925268173217773,
+                        "address": {
+                            "street_address": "Runeberginkatu 56",
+                            "postal_code": "00260",
+                            "locality": "Helsinki"
+                        }
+                    },
+                    "description": {
+                        "intro": null,
+                        "body": "Popular Vietnamese restaurant. There are Lie Mi -restaurants also at Hämeentie, at Kamppi shopping centre and Bulevardi.",
+                        "images": [
+                            {
+                                "url": "https://edit.myhelsinki.fi/sites/default/files/styles/api_1980x1020/public/2017-11/19554137_240979733085399_6444262077231740858_n.jpg?h=4f0c55e5&itok=mAWxrsfv",
+                                "copyright_holder": "Lie Mi Töölö",
+                                "license_type": {
+                                    "id": 1,
+                                    "name": "All rights reserved."
+                                }
+                            }
+                        ]
+                    },
+                    "tags": [
+                        {
+                            "id": "matko1:10",
+                            "name": "RESTAURANTS & CAFES"
+                        },
+                        {
+                            "id": "matko2:197",
+                            "name": "Vietnamese"
+                        },
+                        {
+                            "id": "matko2:229",
+                            "name": "Restaurant"
+                        },
+                        {
+                            "id": "matko2:80",
+                            "name": "Asian"
+                        },
+                        {
+                            "id": "matko2:168",
+                            "name": "Brunch"
+                        }
+                    ],
+                    "opening_hours": {
+                        "hours": [
+                            {
+                                "weekday_id": 1,
+                                "opens": "11:00:00",
+                                "closes": "22:00:00",
+                                "open24h": false
+                            },
+                            {
+                                "weekday_id": 2,
+                                "opens": "11:00:00",
+                                "closes": "22:00:00",
+                                "open24h": false
+                            },
+                            {
+                                "weekday_id": 3,
+                                "opens": "11:00:00",
+                                "closes": "22:00:00",
+                                "open24h": false
+                            },
+                            {
+                                "weekday_id": 4,
+                                "opens": "11:00:00",
+                                "closes": "22:00:00",
+                                "open24h": false
+                            },
+                            {
+                                "weekday_id": 5,
+                                "opens": "11:00:00",
+                                "closes": "23:00:00",
+                                "open24h": false
+                            },
+                            {
+                                "weekday_id": 6,
+                                "opens": "12:00:00",
+                                "closes": "23:00:00",
+                                "open24h": false
+                            },
+                            {
+                                "weekday_id": 7,
+                                "opens": "12:00:00",
+                                "closes": "22:00:00",
+                                "open24h": false
+                            }
+                        ],
+                        "openinghours_exception": ""
+                    },
+                    "open_now": "Yes"
+                }
+            ]
+        },
+        "rawHeaders": [
+            "X-Powered-By",
+            "Express",
+            "Content-Type",
+            "application/json; charset=utf-8",
+            "Content-Length",
+            "4279",
+            "ETag",
+            "W/\"10b7-JcRuydKvHWafXc4sALpxVxJfRZw\"",
+            "Date",
+            "Mon, 26 Jul 2021 19:20:16 GMT",
+            "Connection",
+            "close"
+        ],
+        "responseIsBinary": false
+    }
+]

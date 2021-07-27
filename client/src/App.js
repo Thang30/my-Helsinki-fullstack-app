@@ -39,16 +39,6 @@ const App = () => {
   const [numOfPlaces, setNumOfPlaces] = useState();
   const [numOfPages, setNumOfPages] = useState();
   const [requestedPage, setRequestedPage] = useState();
-  // useEffect(() => {
-  //   const initializeAllPlaces = async () => {
-  //     const allPlaces = await getDataFromServerServices.getAllPlaces();
-
-  //     console.log("the data is:", allPlaces.data);
-  //     setPlaces(allPlaces.data);
-  //   };
-
-  //   initializeAllPlaces();
-  // }, []);
 
   useEffect(() => {
     const fetchDataAgain = async () => {
@@ -62,34 +52,10 @@ const App = () => {
       setNumOfPlaces(fetchResult.meta.numOfPlaces);
       setNumOfPages(fetchResult.meta.numOfPages);
       setRequestedPage(fetchResult.meta.requestedPage);
-      // const metaData = fetchResult.meta;
-      // return metaData;
     };
 
     fetchDataAgain();
   }, [queryParameters]);
-
-  // return <div>{<Places />}</div>;
-  // return null;
-
-  // const columns = [
-  //   { id: "name", label: "Name", minWidth: 170 },
-  //   { id: "address", label: "Address", minWidth: 200 },
-  //   { id: "open now", label: "Open Now", minWidth: 100 },
-  // ];
-
-  // export default function StickyHeadTable() {
-  //   const [page, setPage] = React.useState(0);
-  //   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-
-  //   const handleChangePage = (event, newPage) => {
-  //     setPage(newPage);
-  //   };
-
-  //   const handleChangeRowsPerPage = (event) => {
-  //     setRowsPerPage(+event.target.value);
-  //     setPage(0);
-  //   };
 
   const useStyles = makeStyles({
     table: {
@@ -99,31 +65,12 @@ const App = () => {
 
   const classes = useStyles();
 
-  // const displayMetaData = () => (
-  //   <Fragment>Places found: {numOfPlaces}</Fragment>
-  // );
-
-  // const handlePageChange = (event, value) => {
-  //   setRequestedPageQuery(event.target.value);
-  //   setQueryParameters({
-  //     ...queryParameters,
-  //     requestedPage: requestedPageQuery,
-  //   });
-  //   // setNumOfPages()
-  // };
-
   return (
     <Fragment>
-      {/* <ul>
-        {places.map((place) => (
-          <li>
-            <Place key={place.id} place={place} />
-          </li>
-        ))}
-      </ul> */}
       <p style={{ textAlign: "center" }}>
         Refresh this page (pressing F5) to get all places again.
       </p>
+
       <p style={{ textAlign: "center" }}>
         <input
           type="text"
@@ -146,8 +93,6 @@ const App = () => {
           ALL of the submitted tags
         </InputLabel>
         <Select
-          // labelId="demo-simple-select-label"
-          // id="demo-simple-select"
           value={tagFilterOrNotQuery}
           onChange={(event) => {
             setTagFilterOrNotQuery(event.target.value);
@@ -189,7 +134,6 @@ const App = () => {
         <span>&nbsp;</span>
         <span>&nbsp;</span>
         <span>&nbsp;</span>
-
         <button
           type="button"
           onClick={() =>
