@@ -10,11 +10,9 @@ const getAllPlaces = async () => {
 
 export const initialQueryParameters = {
   tagList: "",
-  languageFilter: "",
   tagFilterOrNot: "",
   pageSize: "",
   requestedPage: "",
-  // allPlacesOrNot: true,
 };
 
 const getFilteredPlaces = async (queryParameters) => {

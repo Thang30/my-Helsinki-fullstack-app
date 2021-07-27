@@ -73,11 +73,14 @@ const App = () => {
 
       <p style={{ textAlign: "center" }}>
         <input
+          className="inputTagList"
+          id="input-tag-list"
           type="text"
           value={tagListQuery}
           onChange={(event) => setTagListQuery(event.target.value)}
         />
         <button
+          id="button-tag-list"
           type="button"
           onClick={() =>
             setQueryParameters({
@@ -93,6 +96,7 @@ const App = () => {
           ALL of the submitted tags
         </InputLabel>
         <Select
+          id="select-any-all"
           value={tagFilterOrNotQuery}
           onChange={(event) => {
             setTagFilterOrNotQuery(event.target.value);
@@ -102,6 +106,7 @@ const App = () => {
           <MenuItem value={"true"}>All</MenuItem>
         </Select>
         <button
+          id="button-any-all"
           type="button"
           onClick={() =>
             setQueryParameters({
@@ -116,6 +121,8 @@ const App = () => {
 
       <p style={{ textAlign: "center" }}>
         <input
+          className="inputPageSize"
+          id="input-page-size"
           type="text"
           value={pageSizeQuery}
           onChange={(event) => setPageSizeQuery(event.target.value)}
@@ -123,6 +130,7 @@ const App = () => {
 
         <button
           type="button"
+          id="button-page-size"
           onClick={() =>
             setQueryParameters({ ...queryParameters, pageSize: pageSizeQuery })
           }
@@ -135,6 +143,7 @@ const App = () => {
         <span>&nbsp;</span>
         <span>&nbsp;</span>
         <button
+          id="button-requested-page"
           type="button"
           onClick={() =>
             setQueryParameters({
@@ -146,6 +155,8 @@ const App = () => {
           Go to page
         </button>
         <input
+          id="input-requested-page"
+          className="inputRequestedPage"
           type="text"
           value={requestedPageQuery}
           onChange={(event) => setRequestedPageQuery(event.target.value)}
@@ -159,7 +170,11 @@ const App = () => {
       </p>
 
       <TableContainer component={Paper}>
-        <Table className={classes.table} aria-label="my-table">
+        <Table
+          id="table-places"
+          className={classes.table}
+          aria-label="my-table"
+        >
           <TableHead>
             <TableRow>
               <TableCell align="center" colSpan={3}>
