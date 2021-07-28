@@ -1,3 +1,5 @@
+// this script plays no role in the current applicationCache, just something written as experimenting before
+
 const initialState = {
   tagList: "",
   languageFilter: "",

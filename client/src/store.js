@@ -1,3 +1,5 @@
+// this script plays no role in the current applicationCache, just something written as experimenting before
+
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import placeReducer from "./reducers/placeReducer";

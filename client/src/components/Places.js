@@ -1,3 +1,5 @@
+// this script plays no role in the current applicationCache, just something written as experimenting before
+
 import React from "react";
 import { useSelector } from "react-redux";
 // import places from "../services/getDataFromServer";

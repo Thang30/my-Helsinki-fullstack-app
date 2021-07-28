@@ -1,3 +1,5 @@
+// this script plays no role in the current applicationCache, just something written as experimenting before
+
 import getDataFromServer from "../services/getDataFromServer";
 
 const initialQueryParameters = {
