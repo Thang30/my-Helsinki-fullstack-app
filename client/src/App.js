@@ -8,11 +8,19 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
+// import TableCell from "@material-ui/core/TableCell";
+import MuiTableCell from "@material-ui/core/TableCell";
+
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import { Map, Marker, Overlay } from "pigeon-maps";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import { spacing } from "@material-ui/system";
+import Container from "@material-ui/core/Container";
+import { withStyles } from "@material-ui/core/styles";
+
 import { render } from "ejs";
 // import randomLogo from "../public/logo192.png";
 
@@ -69,8 +77,20 @@ const App = () => {
     }
   };
 
-  const [hue, setHue] = useState(0);
-  const color = `hsl(${hue % 360}deg 39% 70%)`;
+  const TableCell = withStyles({
+    root: {
+      border: "2px solid #10B7F3",
+    },
+  })(MuiTableCell);
+
+  const openNowColor = (openNow) => {
+    const openNowBoolean = JSON.parse(openNow);
+    console.log("The boolean value is: ", openNowBoolean);
+    return openNowBoolean ? "#24D048" : "#E9452B";
+  };
+
+  // const [hue, setHue] = useState(0);
+  // const color = `hsl(${hue % 360}deg 39% 70%)`;
 
   // const [displayOverlay, setDisplayOverlay] = useState(false);
   // const showWhenVisible = { display: displayOverlay ? "" : "none" };
@@ -91,21 +111,29 @@ const App = () => {
 
   return (
     <Fragment>
-      <p style={{ textAlign: "center" }}>
-        Refresh this page (pressing F5) to get all places again.
-      </p>
+      <h1 style={{ textAlign: "center", color: "#227AD4" }}>
+        Our Helsinki Places App
+      </h1>
+      <h3 style={{ textAlign: "center", color: "#E9452B" }}>
+        Notice: Refresh this page (pressing F5) to get all places again!
+      </h3>
 
       <p style={{ textAlign: "center" }}>
-        <input
+        <TextField
           className="inputTagList"
           id="input-tag-list"
           type="text"
+          variant="outlined"
+          size="small"
           value={tagListQuery}
           onChange={(event) => setTagListQuery(event.target.value)}
         />
-        <button
+        <span>&nbsp;</span>
+        <Button
           id="button-tag-list"
           type="button"
+          variant="contained"
+          color="primary"
           onClick={() =>
             setQueryParameters({
               ...queryParameters,
@@ -114,11 +142,13 @@ const App = () => {
           }
         >
           Submit tags seperated by commas
-        </button>
+        </Button>
+        <p></p>
         <InputLabel>
           Any means places with at least 1 submitted tag. All means places with
           ALL of the submitted tags
         </InputLabel>
+        <p></p>
         <Select
           id="select-any-all"
           value={tagFilterOrNotQuery}
@@ -129,9 +159,12 @@ const App = () => {
           <MenuItem value={"false"}>Any</MenuItem>
           <MenuItem value={"true"}>All</MenuItem>
         </Select>
-        <button
+        <span>&nbsp;</span>
+        <Button
           id="button-any-all"
           type="button"
+          variant="contained"
+          color="primary"
           onClick={() =>
             setQueryParameters({
               ...queryParameters,
@@ -140,37 +173,45 @@ const App = () => {
           }
         >
           Any or All
-        </button>
+        </Button>
       </p>
 
-      <p style={{ textAlign: "center" }}>The maximum page size is 50</p>
+      <h3 style={{ textAlign: "center", color: "#E9452B" }}>
+        Notice: The maximum page size is 50!
+      </h3>
 
       <p style={{ textAlign: "center" }}>
-        <input
+        <TextField
           className="inputPageSize"
           id="input-page-size"
           type="text"
+          variant="outlined"
+          size="small"
           value={pageSizeQuery}
           onChange={(event) => setPageSizeQuery(event.target.value)}
         />
-
-        <button
+        <span>&nbsp;</span>
+        <Button
           type="button"
           id="button-page-size"
+          variant="contained"
+          color="primary"
           onClick={() => {
             handlePageSize(pageSizeQuery);
           }}
         >
           Submit page size
-        </button>
+        </Button>
         <span>&nbsp;</span>
         <span>&nbsp;</span>
         <span>&nbsp;</span>
         <span>&nbsp;</span>
         <span>&nbsp;</span>
-        <button
+        <Button
           id="button-requested-page"
           type="button"
+          variant="contained"
+          color="primary"
           onClick={() =>
             setQueryParameters({
               ...queryParameters,
@@ -179,90 +220,149 @@ const App = () => {
           }
         >
           Go to page
-        </button>
-        <input
+        </Button>
+        <span>&nbsp;</span>
+        <TextField
           id="input-requested-page"
           className="inputRequestedPage"
           type="text"
+          variant="outlined"
+          size="small"
           value={requestedPageQuery}
           onChange={(event) => setRequestedPageQuery(event.target.value)}
         />
       </p>
 
-      <p style={{ textAlign: "center" }}>
+      <p style={{ textAlign: "center", fontSize: "20px", color: "#24D048" }}>
         Places found: {numOfPlaces}. Displaying {pageSize} places per page.
         Total number of pages is: {numOfPages}. Currently on page:{" "}
         {requestedPage}.
       </p>
 
-      <p style={{ textAlign: "center" }}>Our Map</p>
-
-      <Map
-        height={300}
-        defaultCenter={[60.17114299375396, 24.956196766060668]}
-        defaultZoom={11}
-      >
-        {places.map((place) => (
-          <Overlay anchor={[place.location.lat, place.location.lon]}>
-            <Marker
-              width={30}
-              anchor={[place.location.lat, place.location.lon]}
-              color={color}
-              offset={[0, 1000]}
-            />
-            <p>{place.name.en}</p>
-          </Overlay>
-        ))}
-      </Map>
-
-      <p style={{ textAlign: "center" }}>The Places in Tabular Format</p>
-
-      <TableContainer component={Paper}>
-        <Table
-          id="table-places"
-          className={classes.table}
-          aria-label="my-table"
+      <h2 style={{ textAlign: "center", color: "#227AD4" }}>Our Map</h2>
+      <Container>
+        <Map
+          mx={20}
+          height={300}
+          defaultCenter={[60.17114299375396, 24.956196766060668]}
+          defaultZoom={11}
         >
-          <TableHead>
-            <TableRow>
-              <TableCell align="center" colSpan={3}>
-                Name
-              </TableCell>
-              <TableCell align="center" colSpan={3}>
-                Address
-              </TableCell>
-              <TableCell align="center" rowSpan={2}>
-                Open Now
-              </TableCell>
-            </TableRow>
-            <TableCell align="center">English</TableCell>
-            <TableCell align="center">Finnish</TableCell>
-            <TableCell align="center">Swedish</TableCell>
-            <TableCell align="center">Street Address</TableCell>
-            <TableCell align="center">Postal Code</TableCell>
-            <TableCell align="center">Locality</TableCell>
-          </TableHead>
-          <TableBody>
-            {places.map((place) => (
-              <TableRow key={place.id}>
-                <TableCell alight="right">{place.name.en}</TableCell>
-                <TableCell alight="right">{place.name.fi}</TableCell>
-                <TableCell alight="right">{place.name.sv}</TableCell>
-                <TableCell alight="right">
-                  {place.location.address.street_address}
+          {places.map((place) => (
+            <Overlay anchor={[place.location.lat, place.location.lon]}>
+              <Marker
+                width={30}
+                anchor={[place.location.lat, place.location.lon]}
+                // color={color}
+                offset={[0, 1000]}
+              />
+              <p>{place.name.en}</p>
+            </Overlay>
+          ))}
+        </Map>
+      </Container>
+
+      <h2 style={{ textAlign: "center", color: "#227AD4" }}>
+        The Places in Tabular Format
+      </h2>
+
+      <Container>
+        <TableContainer component={Paper}>
+          <Table
+            id="table-places"
+            className={classes.table}
+            aria-label="my-table"
+            style={{ border: "3px solid #227AD4" }}
+          >
+            <TableHead>
+              <TableRow>
+                <TableCell
+                  align="center"
+                  colSpan={3}
+                  style={{ color: "#D3DB1D", fontSize: "20px" }}
+                >
+                  Name
                 </TableCell>
-                <TableCell alight="right">
-                  {place.location.address.postal_code}
+                <TableCell
+                  align="center"
+                  colSpan={3}
+                  style={{ color: "#D3DB1D", fontSize: "20px" }}
+                >
+                  Address
                 </TableCell>
-                <TableCell alight="right">
-                  {place.location.address.locality}
+                <TableCell
+                  align="center"
+                  rowSpan={2}
+                  style={{ color: "#D3DB1D", fontSize: "20px" }}
+                >
+                  Open Now
                 </TableCell>
-                <TableCell alight="center">{place.open_now}</TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+              <TableCell
+                align="center"
+                style={{ color: "#C49B25", fontSize: "16px" }}
+              >
+                English
+              </TableCell>
+              <TableCell
+                align="center"
+                style={{ color: "#C49B25", fontSize: "16px" }}
+              >
+                Finnish
+              </TableCell>
+              <TableCell
+                align="center"
+                style={{ color: "#C49B25", fontSize: "16px" }}
+              >
+                Swedish
+              </TableCell>
+              <TableCell
+                align="center"
+                style={{ color: "#C49B25", fontSize: "16px" }}
+              >
+                Street Address
+              </TableCell>
+              <TableCell
+                align="center"
+                style={{ color: "#C49B25", fontSize: "16px" }}
+              >
+                Postal Code
+              </TableCell>
+              <TableCell
+                align="center"
+                style={{ color: "#C49B25", fontSize: "16px" }}
+              >
+                Locality
+              </TableCell>
+            </TableHead>
+            <TableBody>
+              {places.map((place) => (
+                <TableRow key={place.id}>
+                  <TableCell align="right">{place.name.en}</TableCell>
+                  <TableCell align="right">{place.name.fi}</TableCell>
+                  <TableCell align="right">{place.name.sv}</TableCell>
+                  <TableCell align="right">
+                    {place.location.address.street_address}
+                  </TableCell>
+                  <TableCell align="right">
+                    {place.location.address.postal_code}
+                  </TableCell>
+                  <TableCell align="right">
+                    {place.location.address.locality}
+                  </TableCell>
+                  <TableCell
+                    align="center"
+                    // style={{
+                    //   color: JSON.parse(place.open_now) ? "#24D048" : "#E9452B",
+                    // }}
+                  >
+                    {place.open_now}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Container>
     </Fragment>
   );
 };
