@@ -1,5 +1,6 @@
 require("dotenv").config();
 const axios = require("axios");
+const { all } = require("../controllers/placeDisplayController");
 const config = require("../utils/config");
 // const logger = require("../utils/logger");
 
@@ -9,12 +10,12 @@ const getPlacesFromAPI = async (
   tagList = "all",
   languageFilter,
   tagFilterOrNot,
-  // allPlacesOrNot = true,
   pageSize = 10,
   startItemIndex
 ) => {
   try {
     if (tagList == "all") {
+      // get everything
       const response = await axios.get(
         `${externalAPI}?limit=${pageSize}&start=${startItemIndex}`
       );
@@ -22,12 +23,14 @@ const getPlacesFromAPI = async (
       return response.data;
     } else {
       if (tagFilterOrNot) {
+        // the tag filter is set to ALL
         const response = await axios.get(
           `${externalAPI}?tags_filter=${tagList}&language_filter=${languageFilter}&limit=${pageSize}&start=${startItemIndex}`
         );
         // logger.info(response.data.meta);
         return response.data;
       } else {
+        // the tag filter is set to async
         const response = await axios.get(
           `${externalAPI}?tags_search=${tagList}&language_filter=${languageFilter}&limit=${pageSize}&start=${startItemIndex}`
         );
@@ -41,6 +44,7 @@ const getPlacesFromAPI = async (
 };
 
 const isOpen = (place) => {
+  // determine whether or not a place is open based on the user's current time
   let isOpen = "No";
 
   const today = new Date().getDay();

@@ -4,7 +4,9 @@ describe("Place app", function () {
   });
 
   it("front page can be opened with all 2399 places", function () {
-    cy.contains("Refresh this page (pressing F5) to get all places again.");
+    cy.contains(
+      "Notice: Refresh this page (pressing F5) to get all places again!"
+    );
     cy.contains("Places found: 2399");
   });
 

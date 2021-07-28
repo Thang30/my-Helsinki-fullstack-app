@@ -10,7 +10,7 @@ nockBack.fixtures = path.join(__dirname, "__nock-fixtures__");
 nockBack.setMode("record");
 
 describe("get the  data of all 2399 places, including the metadata", () => {
-  test("should set up the mock api and save the mock api response for getting all places, also requires that: exactly all 2399 places are returned", async () => {
+  test("should set up the mock api and save the mock api response for getting all places, also require that: exactly all 2399 places are returned", async () => {
     const { nockDone } = await nockBack("getAllPlacesData.json");
 
     nock.enableNetConnect(/127\.0\.0\.1/);
@@ -22,9 +22,6 @@ describe("get the  data of all 2399 places, including the metadata", () => {
 
     const response = await backEndApi.get("/api/places");
     expect(response.body.meta.numOfPlaces).toMatch("2399");
-    // expect(response.body.meta.numOfPages).toEqual(
-    //   Math.ceil(response.body.meta.numOfPlaces / response.body.meta.pageSize)
-    // );
 
     nockDone();
   });
@@ -46,6 +43,7 @@ describe("get the  data of all 2399 places, including the metadata", () => {
     const { nockDone } = await nockBack("getAllPlacesData.json");
 
     nock.enableNetConnect(/127\.0\.0\.1/);
+
     const response = await backEndApi.get("/api/places");
     expect(response.body.meta.numOfPages).toEqual(
       Math.ceil(response.body.meta.numOfPlaces / response.body.meta.pageSize)
@@ -56,7 +54,7 @@ describe("get the  data of all 2399 places, including the metadata", () => {
 });
 
 describe("get the  data of from a complex query string, including the metadata", () => {
-  test("should set up the mock api and save the mock api response for getting the filtered places, check if the returned data in json", async () => {
+  test("should set up the mock api and save the mock api response for getting the filtered places, check if the returned data is in json format", async () => {
     const { nockDone } = await nockBack("getFilteredPlacesData.json");
 
     nock.enableNetConnect(/127\.0\.0\.1/);
@@ -67,22 +65,6 @@ describe("get the  data of from a complex query string, including the metadata",
       )
       .expect(200)
       .expect("Content-Type", /application\/json/);
-
-    nockDone();
-  });
-
-  test("should verify that the number of pages is caculated correctly", async () => {
-    const { nockDone } = await nockBack("getFilteredPlacesData.json");
-
-    nock.enableNetConnect(/127\.0\.0\.1/);
-
-    const response = await backEndApi.get(
-      "/api/places/?tagList=Vietnamese,Asian&tagFilterOrNot=true&pageSize=3&requestedPage=2"
-    );
-
-    expect(response.body.meta.numOfPages).toEqual(
-      Math.ceil(response.body.meta.numOfPlaces / response.body.meta.pageSize)
-    );
 
     nockDone();
   });

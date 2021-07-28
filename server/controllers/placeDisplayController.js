@@ -1,5 +1,4 @@
 const router = require("express").Router();
-const { json } = require("express");
 // const placeService = require("../services/place");
 const myHelsinkiAPI = require("../external_api/myHelsinkiAPI");
 
@@ -38,17 +37,15 @@ router.get("/", async (req, res) => {
       tagList,
       languageFilter,
       tagFilterOrNot,
-      // allPlacesOrNot,
       pageSize,
       startItemIndex
     );
-    // console.log(filteredPlaces);
     filteredPlaces.data.forEach((place) => {
       myHelsinkiAPI.isOpen(place);
     });
     const numOfPlaces = filteredPlaces.meta.count;
     const numOfPages = Math.ceil(numOfPlaces / pageSize);
-    // res.json(filteredPlaces.data);
+    // we want to send to the client both the place data and the meta data for pagination
     res.send({
       meta: { pageSize, numOfPlaces, numOfPages, requestedPage },
       data: filteredPlaces.data,

@@ -1,6 +1,8 @@
 import "./App.css";
 import React, { useEffect, useState, Fragment } from "react";
 import getDataFromServerServices from "./services/getDataFromServer";
+
+// the downside of material ui: so many import lines!
 import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -8,25 +10,21 @@ import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
-// import TableCell from "@material-ui/core/TableCell";
 import MuiTableCell from "@material-ui/core/TableCell";
-
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import { Map, Marker, Overlay } from "pigeon-maps";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
-import { spacing } from "@material-ui/system";
 import Container from "@material-ui/core/Container";
 import { withStyles } from "@material-ui/core/styles";
 
-import { render } from "ejs";
-// import randomLogo from "../public/logo192.png";
-
 const App = () => {
+  // the state of the place data to be displayed
   const [places, setPlaces] = useState([]);
-  // const dispatch = useDispatch();
+
+  // the states of the different query parameters of the requests to the server
   const [pageSizeQuery, setPageSizeQuery] = useState();
   const [requestedPageQuery, setRequestedPageQuery] = useState();
   const [tagListQuery, setTagListQuery] = useState();
@@ -35,18 +33,20 @@ const App = () => {
     getDataFromServerServices.initialQueryParameters
   );
 
+  // the states of the meta data sent from the server, to help the client render the pagination
   const [pageSize, setPageSize] = useState(10);
   const [numOfPlaces, setNumOfPlaces] = useState();
   const [numOfPages, setNumOfPages] = useState();
   const [requestedPage, setRequestedPage] = useState();
 
+  // basically, every time the user changes any of the filter options, the queryParameters state changes, and we re-request the server with the updated query parameters, and re-render the place data
   useEffect(() => {
     const fetchDataAgain = async () => {
       const fetchResult = await getDataFromServerServices.getFilteredPlaces(
         queryParameters
       );
 
-      console.log("The meta data:", fetchResult.meta);
+      // console.log("The meta data:", fetchResult.meta);
       setPlaces(fetchResult.data);
       setPageSize(fetchResult.meta.pageSize);
       setNumOfPlaces(fetchResult.meta.numOfPlaces);
@@ -57,14 +57,7 @@ const App = () => {
     fetchDataAgain();
   }, [queryParameters]);
 
-  const useStyles = makeStyles({
-    table: {
-      minWidth: 700,
-    },
-  });
-
-  const classes = useStyles();
-
+  // if the user set the page size to be over the maximum 50, the browser will send an alert!
   const handlePageSize = (pageSizeQuery) => {
     if (pageSizeQuery > 50) {
       // console.log("page size should not exceed 50");
@@ -77,17 +70,24 @@ const App = () => {
     }
   };
 
+  // style for the table
+  const useStyles = makeStyles({
+    table: {
+      minWidth: 700,
+    },
+  });
+  const classes = useStyles();
   const TableCell = withStyles({
     root: {
       border: "2px solid #10B7F3",
     },
   })(MuiTableCell);
 
-  const openNowColor = (openNow) => {
-    const openNowBoolean = JSON.parse(openNow);
-    console.log("The boolean value is: ", openNowBoolean);
-    return openNowBoolean ? "#24D048" : "#E9452B";
-  };
+  // const openNowColor = (openNow) => {
+  //   const openNowBoolean = JSON.parse(openNow);
+  //   console.log("The boolean value is: ", openNowBoolean);
+  //   return openNowBoolean ? "#24D048" : "#E9452B";
+  // };
 
   // const [hue, setHue] = useState(0);
   // const color = `hsl(${hue % 360}deg 39% 70%)`;
@@ -261,9 +261,7 @@ const App = () => {
         </Map>
       </Container>
 
-      <h2 style={{ textAlign: "center", color: "#227AD4" }}>
-        The Places in Tabular Format
-      </h2>
+      <h2 style={{ textAlign: "center", color: "#227AD4" }}>Our Table</h2>
 
       <Container>
         <TableContainer component={Paper}>
@@ -366,4 +364,5 @@ const App = () => {
     </Fragment>
   );
 };
+
 export default App;
