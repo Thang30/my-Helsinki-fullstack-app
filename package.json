@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "concurrently": "^6.2.0"
+  },
+  "scripts": {
+    "client": "cd client && npm start",
+    "server": "cd server && npm run dev",
+    "fullstack": "concurrently \"npm run server\" \"npm run client\""
+  }
+}
