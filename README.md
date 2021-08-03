@@ -28,4 +28,15 @@ A small React-Node app for a test assignment.
     cd ..
     npm run fullstack
     ```
+4. Optionally, to test the application:
+    1. We can test the backend with mock API:
+    ```
+    cd server
+    npm run test
+    ```
+    2. We can test the front-end with Cypress:
+    ```
+    cd client
+    npm run cypress:open
+    ```
     
