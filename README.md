@@ -3,6 +3,10 @@
 
 A small React-Node app for a test assignment.
 
+**Update!**: The application can now be checked out at [this address](https://blooming-journey-14473.herokuapp.com/). 
+
+Credits to [Heroku](https://www.heroku.com) for the free cloud deployment!
+
 ## How to run the application
 
 1. Clone the repository to your local machine
