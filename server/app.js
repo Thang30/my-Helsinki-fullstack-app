@@ -2,6 +2,8 @@ const express = require("express");
 const app = express();
 const placeDisplayController = require("./controllers/placeDisplayController");
 
+app.use(express.static("build"));
+
 app.use("/api/places", placeDisplayController);
 
 app.use("/", (req, res) => {
